@@ -1,0 +1,17 @@
+# .git directory
+.git/
+
+# macOS
+.DS_Store
+
+# pyenv
+.python-version
+
+# compiled requirements
+requirements.txt
+
+# virtual environment
+venv/
+
+# Ruff cache
+.ruff_cache/
