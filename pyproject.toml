@@ -36,7 +36,9 @@ max-args = 10
   # type annotation
   "ANN",
   # implicit namespace package
-  "INP001"
+  "INP001",
+  # use of assert
+  "S101"
 ]
 
 
