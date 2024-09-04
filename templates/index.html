@@ -12,10 +12,9 @@
       <a href="#"><h1 id="name">Victor Dumetz</h1></a>
       <nav id="navigation-bar">
         <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
+          {% for section in sections %}
+          <li><a href="#{{ section.html_id }}">{{ section.name }}</a></li>
+          {% endfor %}
         </ul>
       </nav>
     </header>
@@ -27,30 +26,14 @@
           tinkerer.
         </p>
       </section>
-      <section id="about">
+      {% for section in sections %}
+      <section id="{{ section.html_id }}">
         <h2>
-          About Me
+          {{ section.name }}
           <hr />
         </h2>
       </section>
-      <section id="skills">
-        <h2>
-          Skills
-          <hr />
-        </h2>
-      </section>
-      <section id="projects">
-        <h2>
-          Projects
-          <hr />
-        </h2>
-      </section>
-      <section id="contact">
-        <h2>
-          Contact
-          <hr />
-        </h2>
-      </section>
+      {% endfor %}
     </main>
   </body>
 </html>
