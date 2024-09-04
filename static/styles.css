@@ -1,0 +1,103 @@
+:root {
+  --header-height: 8vh;
+  --onyx: #393e41;
+}
+
+html {
+  scroll-padding-top: var(--header-height);
+  scroll-behavior: smooth;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  min-height: var(--header-height);
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  padding: 0 42px;
+  font-size: 1.2rem;
+  z-index: 999;
+}
+
+header a {
+  text-decoration: none;
+}
+
+header a,
+header a:visited,
+header a:hover,
+header a:active {
+  color: inherit;
+}
+
+#name {
+  font-size: 1.5em;
+}
+
+#navigation-bar {
+  font-size: 1.2rem;
+}
+
+#navigation-bar ul {
+  height: 100%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#navigation-bar ul li {
+  padding: 10px;
+  margin: 0 10px;
+  list-style-type: none;
+}
+
+main {
+  margin-top: var(--header-height);
+}
+
+section {
+  height: calc(100vh - var(--header-height));
+  overflow: auto;
+}
+
+section:nth-child(even) {
+  background-color: gray;
+}
+
+#tagline p {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  padding-left: 72px;
+  font-size: 3rem;
+}
+
+#tagline em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+#tagline-name {
+  font-size: 1.5em;
+}
+
+section h2 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 16px 16px;
+  text-align: center;
+  font-size: 2rem;
+}
+
+section h2 hr {
+  width: 90%;
+  margin: auto;
+  border: 1px solid black;
+}
