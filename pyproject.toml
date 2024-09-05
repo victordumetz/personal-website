@@ -42,6 +42,10 @@ max-args = 10
   # use of assert
   "S101"
 ]
+"migrations/*.py" = [
+  # implicit namespace package
+  "INP001"
+]
 
 
 # ==========
