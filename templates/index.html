@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{{ url_for('static', path='/reset.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet" />
+    <title>Victor Dumetz</title>
+  </head>
+  <body>
+    <header>
+      <a href="#"><h1 id="name">Victor Dumetz</h1></a>
+      <nav id="navigation-bar">
+        <ul>
+          {% for section in sections %}
+          <li><a href="#{{ section.html_id }}">{{ section.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="tagline">
+        <p>
+          Hello, my name is<br /><em id="tagline-name">Victor Dumetz</em
+          ><br />I'm a <em id="tagline-job">Data Scientist</em> and avid
+          tinkerer.
+        </p>
+      </section>
+      {% for section in sections %}
+      <section id="{{ section.html_id }}">
+        <h2>
+          {{ section.name }}
+          <hr />
+        </h2>
+      </section>
+      {% endfor %}
+    </main>
+  </body>
+</html>

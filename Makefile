@@ -9,6 +9,9 @@ PYTHON_VERSION = 3.12.1
 # Python version without release number
 PYTHON_SHORT_VERSION = $(shell echo $(PYTHON_VERSION) | sed -r "s/^([[:digit:]]+\.[[:digit:]]+)\..*$$/\1/g")
 
+# Python version for Ruff
+PYTHON_RUFF_VERSION = $(shell echo $(PYTHON_VERSION) | sed -r "s/^([[:digit:]]+)\.([[:digit:]]+)\..*$$/py\1\2/g")
+
 # Python version file
 PYTHON_VERSION_FILE = .python-version
 
@@ -26,6 +29,9 @@ COMPILED_REQUIREMENTS_FILE = requirements.txt
 VENV_DIR = venv
 VENV_ACTIVATE = $(VENV_DIR)/bin/activate
 
+# database
+DATABASE = database.db
+
 
 # ==========
 # INIT & CLEAR
@@ -38,11 +44,12 @@ init :
 	$(MAKE) set-ruff-target-version
 	$(MAKE) install-pre-commit-hooks
 	$(MAKE) set-github-actions-python-version
+	$(MAKE) upgrade-database
 
 # clear the repository
 .PHONY : clear
 clear :
-	rm -rf .python-version requirements.txt venv
+	rm -rf .python-version requirements.txt venv database.db
 
 
 # ==========
@@ -68,7 +75,31 @@ format : | $(VENV_ACTIVATE)
 # set Ruff `target-version`
 .PHONY : set-ruff-target-version
 set-ruff-target-version : $(PYTHON_VERSION_FILE)
-	sed -r -i "" "s/^(target-version = ).*$$/\1\"$(RUFF_TARGET_VERSION)\"/g" "pyproject.toml"
+	sed -r -i "" "s/^(target-version = ).*$$/\1\"$(PYTHON_RUFF_VERSION)\"/g" "pyproject.toml"
+
+
+# ==========
+# PYTEST TESTING
+# ==========
+
+# run pytest
+.PHONY : test
+test : | $(VENV_ACTIVATE)
+	$(PYTHON) -m pytest
+
+
+# ==========
+# DATABASE
+# ==========
+
+# create the database
+$(DATABASE) : | $(VENV_ACTIVATE)
+	$(PYTHON) create_database.py
+
+# update the database using Alembic
+.PHONY : upgrade-database
+upgrade-database : | $(VENV_ACTIVATE) $(DATABASE)
+	$(PYTHON) -m alembic upgrade head
 
 
 # ==========

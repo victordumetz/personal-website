@@ -13,5 +13,11 @@ requirements.txt
 # virtual environment
 venv/
 
+# databases
+*.db
+
+# Python cache
+__pycache__/
+
 # Ruff cache
 .ruff_cache/
