@@ -73,6 +73,14 @@ format : | $(VENV_ACTIVATE)
 set-ruff-target-version : $(PYTHON_VERSION_FILE)
 	sed -r -i "" "s/^(target-version = ).*$$/\1\"$(PYTHON_RUFF_VERSION)\"/g" "pyproject.toml"
 
+# ==========
+# PYTEST TESTING
+# ==========
+
+# run pytest
+.PHONY : test
+test : | $(VENV_ACTIVATE)
+	$(PYTHON) -m pytest
 
 # ==========
 # PYTHON
