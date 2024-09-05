@@ -29,6 +29,9 @@ COMPILED_REQUIREMENTS_FILE = requirements.txt
 VENV_DIR = venv
 VENV_ACTIVATE = $(VENV_DIR)/bin/activate
 
+# database
+DATABASE = database.db
+
 
 # ==========
 # INIT & CLEAR
@@ -41,11 +44,12 @@ init :
 	$(MAKE) set-ruff-target-version
 	$(MAKE) install-pre-commit-hooks
 	$(MAKE) set-github-actions-python-version
+	$(MAKE) upgrade-database
 
 # clear the repository
 .PHONY : clear
 clear :
-	rm -rf .python-version requirements.txt venv
+	rm -rf .python-version requirements.txt venv database.db
 
 
 # ==========
@@ -73,6 +77,7 @@ format : | $(VENV_ACTIVATE)
 set-ruff-target-version : $(PYTHON_VERSION_FILE)
 	sed -r -i "" "s/^(target-version = ).*$$/\1\"$(PYTHON_RUFF_VERSION)\"/g" "pyproject.toml"
 
+
 # ==========
 # PYTEST TESTING
 # ==========
@@ -81,6 +86,21 @@ set-ruff-target-version : $(PYTHON_VERSION_FILE)
 .PHONY : test
 test : | $(VENV_ACTIVATE)
 	$(PYTHON) -m pytest
+
+
+# ==========
+# DATABASE
+# ==========
+
+# create the database
+$(DATABASE) : | $(VENV_ACTIVATE)
+	$(PYTHON) create_database.py
+
+# update the database using Alembic
+.PHONY : upgrade-database
+upgrade-database : | $(VENV_ACTIVATE) $(DATABASE)
+	$(PYTHON) -m alembic upgrade head
+
 
 # ==========
 # PYTHON

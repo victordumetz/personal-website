@@ -1,0 +1,5 @@
+alembic
+fastapi
+jinja2
+SQLAlchemy
+uvicorn
