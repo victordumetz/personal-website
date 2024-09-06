@@ -11,6 +11,7 @@ from sqlalchemy.orm import Session
 
 from . import BASE_DIR, crud, models
 from .database import engine, get_db
+from .routers import sections
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -20,6 +21,7 @@ app = FastAPI()
 app.mount(
     "/static", StaticFiles(directory=Path(BASE_DIR, "static")), name="static"
 )
+app.include_router(sections.router)
 
 
 @app.get("/", response_class=HTMLResponse)

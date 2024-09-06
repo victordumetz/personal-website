@@ -3,6 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://unpkg.com/htmx.org@2.0.2"
+      integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ"
+      crossorigin="anonymous"
+    ></script>
     <link href="{{ url_for('static', path='/reset.css') }}" rel="stylesheet" />
     <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet" />
     <title>Victor Dumetz</title>
@@ -32,9 +37,17 @@
           {{ section.name }}
           <hr />
         </h2>
-        <div class="section-content"></div>
+        <div
+          class="section-content"
+          hx-get="/{{ section.html_id }}-section"
+          hx-swap="innerHTML"
+          hx-trigger="load"
+        ></div>
         {% if section.has_page %}
         <a href="/{{ section.html_id }}" class="see-more">See more →</a>
+        {% else %}
+        <!--Allow consistent flex layout across the sections-->
+        <div class="empty-flex-item" />
         {% endif %}
       </section>
       {% endfor %}
