@@ -32,6 +32,10 @@
           {{ section.name }}
           <hr />
         </h2>
+        <div class="section-content"></div>
+        {% if section.has_page %}
+        <a href="/{{ section.html_id }}" class="see-more">See more →</a>
+        {% endif %}
       </section>
       {% endfor %}
     </main>

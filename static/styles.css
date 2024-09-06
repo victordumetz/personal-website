@@ -8,6 +8,21 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  font-size: 1.2rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
+}
+
 header {
   position: fixed;
   top: 0;
@@ -21,17 +36,6 @@ header {
   padding: 0 42px;
   font-size: 1.2rem;
   z-index: 999;
-}
-
-header a {
-  text-decoration: none;
-}
-
-header a,
-header a:visited,
-header a:hover,
-header a:active {
-  color: inherit;
 }
 
 #name {
@@ -63,17 +67,43 @@ main {
 section {
   height: calc(100vh - var(--header-height));
   overflow: auto;
+  padding: 0 72px;
+  padding-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 section:nth-child(even) {
   background-color: gray;
 }
 
+section h2 {
+  padding: 6px;
+  margin: 12px;
+  text-align: center;
+  font-size: 2rem;
+}
+
+section h2 hr {
+  width: 90%;
+  margin: auto;
+  border: 1px solid black;
+}
+
+section .see-more {
+  align-self: flex-end;
+  padding: 6px;
+  margin: 12px;
+}
+
+#tagline {
+  justify-content: center;
+}
+
 #tagline p {
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  align-self: flex-start;
   padding-left: 72px;
   font-size: 3rem;
 }
@@ -85,19 +115,4 @@ section:nth-child(even) {
 
 #tagline-name {
   font-size: 1.5em;
-}
-
-section h2 {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 16px 16px;
-  text-align: center;
-  font-size: 2rem;
-}
-
-section h2 hr {
-  width: 90%;
-  margin: auto;
-  border: 1px solid black;
 }
