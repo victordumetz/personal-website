@@ -54,10 +54,13 @@ header {
   justify-content: center;
 }
 
-#navigation-bar ul li {
-  padding: 10px;
+#navigation-bar li {
   margin: 0 10px;
   list-style-type: none;
+}
+
+#navigation-bar a {
+  padding: 10px;
 }
 
 main {
