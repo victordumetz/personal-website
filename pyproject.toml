@@ -21,7 +21,9 @@ ignore = [
   # type annotation for self and cls
   "ANN101", "ANN102",
   # function call in default argument
-  "B008"
+  "B008",
+  # sodos 
+  "TD002", "TD003", "FIX002"
 ]
 
 [tool.ruff.lint.pycodestyle]
