@@ -8,9 +8,7 @@ from fastapi.requests import Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
-from app import BASE_DIR
-
-SECTIONS = ["about", "skills", "projects", "contact"]
+from app import BASE_DIR, SECTIONS
 
 templates = Jinja2Templates(directory=Path(BASE_DIR, "templates", "sections"))
 
@@ -35,8 +33,8 @@ def create_section_endpoint(
 
 for section in SECTIONS:
     router.add_api_route(
-        f"/{section}-section",
-        create_section_endpoint(section),
+        f"/{section["html_id"]}-section",
+        create_section_endpoint(section["html_id"]),
         methods=["GET"],
         response_class=HTMLResponse,
     )
