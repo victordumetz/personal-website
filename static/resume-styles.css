@@ -1,0 +1,10 @@
+main {
+  width: 70%;
+  margin: auto;
+  margin-top: var(--header-height);
+}
+
+section {
+  padding: 18px;
+  margin: 72px;
+}
