@@ -1,8 +1,14 @@
 """Submodule defining the pro. experience related CRUD functions."""
 
+from collections.abc import Sequence
+
+from sqlalchemy import RowMapping, desc, func, select
 from sqlalchemy.orm import Session
 
 import app.schemas.professional_experience as schema
+from app.models.company import Company
+from app.models.professional_experience import ProfessionalExperience
+from app.models.professional_responsibility import ProfessionalResponsibility
 
 
 def get_professional_experience(
@@ -38,3 +44,33 @@ def create_professional_experience(
     db.refresh(db_professional_experience)
 
     return db_professional_experience
+
+
+def get_formatted_professional_experiences(
+    db: Session,
+) -> Sequence[RowMapping]:
+    """Get all the formatted professional experiences."""
+    return (
+        db.execute(
+            select(
+                Company.name,
+                Company.location,
+                ProfessionalExperience.job_title,
+                ProfessionalExperience.date_from,
+                ProfessionalExperience.date_to,
+                func.json_group_array(
+                    ProfessionalResponsibility.description
+                ).label("responsibilities"),
+            )
+            .join_from(Company, ProfessionalExperience)
+            .join(ProfessionalResponsibility)
+            .order_by(desc(ProfessionalExperience.date_from))
+            .group_by(
+                Company.name,
+                ProfessionalExperience.job_title,
+                ProfessionalExperience.date_from,
+            )
+        )
+        .mappings()
+        .all()
+    )

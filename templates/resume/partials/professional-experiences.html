@@ -1,0 +1,19 @@
+{% for experience in experiences %}
+<li>
+  <div class="experience-item-title">
+    <h3>{{ experience.job_title }}</h3>
+    <div class="from-to">
+      {{ experience.year_month_from }} - {{ experience.year_month_to }}
+    </div>
+  </div>
+  <div>
+    <span class="school-company">{{ experience.company_name }}</span> -
+    <span class="location">{{ experience.location }}</span>
+  </div>
+  <ul class="responsibilities">
+    {% for description in experience.responsibilities %}
+    <li class="responsibility">{{ description }}</li>
+    {% endfor %}
+  </ul>
+</li>
+{% endfor %}

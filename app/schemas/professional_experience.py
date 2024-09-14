@@ -24,3 +24,20 @@ class ProfessionalExperience(ProfessionalExperienceBase):
     model_config = ConfigDict(from_attributes=True)
 
     id: int
+
+
+class FormattedProfessionalExperience(BaseModel):
+    """Formatted professional experience schema.
+
+    The formatted experiences include the company information as well as
+    the responsibility descriptions.
+    """
+
+    model_config = ConfigDict(from_attributes=True)
+
+    company_name: str
+    location: str
+    job_title: str
+    year_month_from: str
+    year_month_to: str
+    responsibilities: list[str]

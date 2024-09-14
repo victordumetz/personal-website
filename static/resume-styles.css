@@ -4,7 +4,43 @@ main {
   margin-top: var(--header-height);
 }
 
+h2 {
+  font-size: 2em;
+}
+
 section {
   padding: 18px;
   margin: 72px;
+}
+
+section > ul > li {
+  margin: 24px;
+  list-style: none;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+.experience-item-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.school-company {
+  font-weight: bold;
+}
+
+.location {
+  font-style: italic;
+}
+
+.responsibilities {
+  padding: 6px 36px;
+}
+
+.responsibility {
+  list-style: initial;
+  text-align: justify;
 }
