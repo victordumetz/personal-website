@@ -1,8 +1,12 @@
 """Submodule defining the school attendance related CRUD functions."""
 
+from collections.abc import Sequence
+
+from sqlalchemy import RowMapping, desc, select
 from sqlalchemy.orm import Session
 
 import app.schemas.school_attendance as schema
+from app.models.school import School
 from app.models.school_attendance import SchoolAttendance
 
 
@@ -39,3 +43,24 @@ def create_school_attendance(
     db.refresh(db_school_attendance)
 
     return db_school_attendance
+
+
+def get_formatted_school_attendances(
+    db: Session,
+) -> Sequence[RowMapping]:
+    """Get all the formatted school attendances."""
+    return (
+        db.execute(
+            select(
+                School.name,
+                School.location,
+                SchoolAttendance.content,
+                SchoolAttendance.date_from,
+                SchoolAttendance.date_to,
+            )
+            .join_from(School, SchoolAttendance)
+            .order_by(desc(SchoolAttendance.date_from))
+        )
+        .mappings()
+        .all()
+    )

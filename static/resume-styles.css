@@ -2,6 +2,7 @@ main {
   width: 70%;
   margin: auto;
   margin-top: var(--header-height);
+  padding: 6px;
 }
 
 h2 {
@@ -10,7 +11,6 @@ h2 {
 
 section {
   padding: 18px;
-  margin: 72px;
 }
 
 section > ul > li {
