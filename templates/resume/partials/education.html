@@ -1,0 +1,19 @@
+{% for attendance in attendances %}
+<li>
+  <div class="job-title-from-to">
+    <h3>{{ attendance.content }}</h3>
+    <div class="from-to">
+      {{ attendance.year_month_from }} - {{ attendance.year_month_to }}
+    </div>
+  </div>
+  <div class="company-info">
+    <span class="company">{{ attendance.company_name }}</span> -
+    <span class="location">{{ attendance.location }}</span>
+  </div>
+  <ul class="responsibilities">
+    {% for description in attendance.responsibilities %}
+    <li class="responsibility">{{ description }}</li>
+    {% endfor %}
+  </ul>
+</li>
+{% endfor %}
