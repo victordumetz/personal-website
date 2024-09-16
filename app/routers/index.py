@@ -1,34 +1,47 @@
-"""Module defining the routers for the "I like ..." element."""
+"""Submodule defining the routers for the index page."""
 
 import itertools
 import random
 from collections import deque
-from collections.abc import Generator
+from collections.abc import Awaitable, Callable, Generator
 from pathlib import Path
 
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
-from app import BASE_DIR
-
-I_LIKE_ITEMS = [
-    "judo",
-    "bouldering",
-    "cooking",
-    "linguistics",
-    "music",
-    "drip coffee",
-    "the game of go",
-    "(algorithmic) art",
-    "seeing plants grow",
-]
+from app import BASE_DIR, I_LIKE_ITEMS, SECTIONS
 
 templates = Jinja2Templates(
-    directory=Path(BASE_DIR, "templates", "sections", "partials")
+    directory=Path(BASE_DIR, "templates", "index", "partials")
 )
 
 router = APIRouter()
+
+
+def create_section_endpoint(
+    section: str,
+) -> Callable[[Request], Awaitable[HTMLResponse]]:
+    """Create the endpoint for the given section."""
+
+    async def get_section(request: Request) -> HTMLResponse:
+        """Get the section's section."""
+        return templates.TemplateResponse(
+            request=request, name=f"{section}_section.html"
+        )
+
+    get_section.__name__ = f"get_{section}_section"
+
+    return get_section
+
+
+for section in SECTIONS:
+    router.add_api_route(
+        f"/{section["html_id"]}-section",
+        create_section_endpoint(section["html_id"]),
+        methods=["GET"],
+        response_class=HTMLResponse,
+    )
 
 
 # TODO: Optimise the refreshing by appending only the next item and
