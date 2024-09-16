@@ -44,3 +44,33 @@ h3 {
   list-style: initial;
   text-align: justify;
 }
+
+.language {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticks-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticks-list > div {
+  width: 72px;
+  text-align: center;
+  color: gray;
+  font-size: 0.8em;
+}
+
+.language-name {
+  flex: 0 0 30%;
+}
+
+.language-level {
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+input.language-level {
+  margin: 0 calc(36px - 0.5rem);
+}

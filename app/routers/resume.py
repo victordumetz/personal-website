@@ -11,11 +11,13 @@ from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 
 from app import BASE_DIR, SECTIONS
+from app.crud.language import get_formatted_languages
 from app.crud.professional_experience import (
     get_formatted_professional_experiences,
 )
 from app.crud.school_attendance import get_formatted_school_attendances
 from app.database import get_db
+from app.schemas.language import FormattedLanguage
 from app.schemas.professional_experience import FormattedProfessionalExperience
 from app.schemas.school_attendance import FormattedSchoolAttendance
 
@@ -98,4 +100,36 @@ async def get_education(
         request=request,
         name="partials/education.html",
         context={"education": education},
+    )
+
+
+@router.get(
+    "/languages",
+    response_model=list[FormattedLanguage],
+    response_class=HTMLResponse,
+)
+async def get_languages(
+    request: Request,
+    hx_request: Annotated[str | None, Header()] = None,
+    db: Session = Depends(get_db),
+) -> HTMLResponse | JSONResponse:
+    """Get the languages section."""
+    languages = get_formatted_languages(db)
+
+    if not hx_request:
+        return JSONResponse(jsonable_encoder(languages))
+
+    languages = [
+        FormattedLanguage(
+            name=language.name,
+            level=language.level,
+            cefr_level=language.cefr_level,
+        )
+        for language in languages
+    ]
+
+    return templates.TemplateResponse(
+        request=request,
+        name="partials/languages.html",
+        context={"languages": languages},
     )

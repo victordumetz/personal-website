@@ -1,5 +1,8 @@
 """Submodule defining the language related CRUD functions."""
 
+from collections.abc import Sequence
+
+from sqlalchemy import RowMapping, desc, select
 from sqlalchemy.orm import Session
 
 import app.models.language as model
@@ -47,3 +50,20 @@ def create_language(
     db.refresh(db_language)
 
     return db_language
+
+
+def get_formatted_languages(
+    db: Session,
+) -> Sequence[RowMapping]:
+    """Get all the formatted languages."""
+    return (
+        db.execute(
+            select(
+                model.Language.name,
+                model.Language.level,
+                model.Language.cefr_level,
+            ).order_by(desc(model.Language.level))
+        )
+        .mappings()
+        .all()
+    )
