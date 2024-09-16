@@ -133,3 +133,19 @@ async def get_languages(
         name="partials/languages.html",
         context={"languages": languages},
     )
+
+
+@router.get("/certifications", response_class=HTMLResponse)
+async def get_certifications(request: Request) -> HTMLResponse:
+    """Get the certifications section."""
+    return templates.TemplateResponse(
+        request=request, name="partials/certifications.html"
+    )
+
+
+@router.get("/others", response_class=HTMLResponse)
+async def get_others(request: Request) -> HTMLResponse:
+    """Get the certifications section."""
+    return templates.TemplateResponse(
+        request=request, name="partials/others.html"
+    )
