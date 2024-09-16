@@ -12,3 +12,15 @@ SECTIONS = [
     {"name": "Projects", "order": 3, "html_id": "projects", "has_page": True},
     {"name": "Contact", "order": 4, "html_id": "contact", "has_page": False},
 ]
+
+I_LIKE_ITEMS = [
+    "judo",
+    "bouldering",
+    "cooking",
+    "linguistics",
+    "music",
+    "drip coffee",
+    "the game of go",
+    "(algorithmic) art",
+    "seeing plants grow",
+]

@@ -29,9 +29,6 @@ COMPILED_REQUIREMENTS_FILE = requirements.txt
 VENV_DIR = venv
 VENV_ACTIVATE = $(VENV_DIR)/bin/activate
 
-# database
-DATABASE = database.db
-
 
 # ==========
 # INIT & CLEAR
@@ -92,13 +89,9 @@ test : | $(VENV_ACTIVATE)
 # DATABASE
 # ==========
 
-# create the database
-$(DATABASE) : | $(VENV_ACTIVATE)
-	$(PYTHON) create_database.py
-
 # update the database using Alembic
 .PHONY : upgrade-database
-upgrade-database : | $(VENV_ACTIVATE) $(DATABASE)
+upgrade-database : | $(VENV_ACTIVATE)
 	$(PYTHON) -m alembic upgrade head
 
 

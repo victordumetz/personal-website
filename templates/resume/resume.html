@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://unpkg.com/htmx.org@2.0.2"
+      integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ"
+      crossorigin="anonymous"
+    ></script>
+    <link href="{{ url_for('static', path='/reset.css') }}" rel="stylesheet" />
+    <link
+      href="{{ url_for('static', path='/common-styles.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', path='/resume-styles.css') }}"
+      rel="stylesheet"
+    />
+    <title>Victor Dumetz - Resume</title>
+  </head>
+  <body>
+    <header>
+      <a href="/#"><h1 id="name">Victor Dumetz</h1></a>
+      <nav id="navigation-bar">
+        <ul>
+          {% for section in sections %}
+          <li><a href="/#{{ section.html_id }}">{{ section.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="professional-experiences">
+        <h2>Professional Experiences</h2>
+        <ul hx-get="/professional-experiences" hx-trigger="load"></ul>
+      </section>
+      <section id="education">
+        <h2>Education</h2>
+        <ul hx-get="/education" hx-trigger="load"></ul>
+      </section>
+      <section id="languages">
+        <h2>Languages</h2>
+        <ul hx-get="/languages" hx-trigger="load"></ul>
+      </section>
+      <section id="certifications">
+        <h2>Certifications</h2>
+        <ul hx-get="/certifications" hx-trigger="load"></ul>
+      </section>
+      <section id="others">
+        <h2>Other</h2>
+        <ul hx-get="/others" hx-trigger="load"></ul>
+      </section>
+    </main>
+  </body>
+</html>
