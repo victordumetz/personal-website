@@ -9,7 +9,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from . import BASE_DIR, SECTIONS
-from .routers import index, resume
+from .routers import index, projects, resume
 
 templates = Jinja2Templates(directory=Path(BASE_DIR, "templates", "index"))
 
@@ -18,6 +18,7 @@ app.mount(
     "/static", StaticFiles(directory=Path(BASE_DIR, "static")), name="static"
 )
 app.include_router(index.router)
+app.include_router(projects.router)
 app.include_router(resume.router)
 
 

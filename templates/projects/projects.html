@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://unpkg.com/htmx.org@2.0.2"
+      integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ"
+      crossorigin="anonymous"
+    ></script>
+    <link href="{{ url_for('static', path='/reset.css') }}" rel="stylesheet" />
+    <link
+      href="{{ url_for('static', path='/common-styles.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', path='/projects-styles.css') }}"
+      rel="stylesheet"
+    />
+
+    <title>Victor Dumetz</title>
+  </head>
+  <body>
+    <header>
+      <a href="#"><h1 id="name">Victor Dumetz</h1></a>
+      <nav id="navigation-bar">
+        <ul>
+          {% for section in sections %}
+          <li><a href="/#{{ section.html_id }}">{{ section.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </header>
+  </body>
+  <main>
+    <p>
+      Here is a larger selection of some of the personal projects I worked on:
+    </p>
+    <ul id="projects-list" hx-get="/projects-list" hx-trigger="load"></ul>
+  </main>
+</html>
