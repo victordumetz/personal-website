@@ -1,0 +1,12 @@
+{% for project in projects %}
+<li>
+  <a href="{{ project.github_url }}" target="_blank">
+    <h3>{{ project.name }}</h3>
+    <img
+      src="{{ url_for('static', path='images/project-miniatures/' + project.image_path) }}"
+      alt=""
+    />
+    <p>{{ project.description }}</p>
+  </a>
+</li>
+{% endfor %}
