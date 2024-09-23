@@ -245,3 +245,30 @@ section p {
   padding: 0;
   font-size: 0.8em;
 }
+
+#projects-list {
+  height: 80%;
+  padding: 36px;
+  display: flex;
+}
+
+#projects-list li {
+  height: 100%;
+  max-width: 30vw;
+  padding: 18px;
+  margin: 24px;
+  list-style: none;
+}
+
+#projects-list li a {
+  height: 100%;
+}
+
+#projects-list li a > * {
+  padding: 6px;
+}
+
+#projects-list li a > p {
+  margin: 0;
+  font-size: 1em;
+}
