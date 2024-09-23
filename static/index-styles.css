@@ -195,3 +195,80 @@ section p {
     opacity: var(--opacity-level-2);
   }
 }
+
+#skills-section-content {
+  display: flex;
+  align-items: center;
+}
+
+#skills-section-content > * {
+  padding: 6px;
+  margin: 12px;
+}
+
+#machine-learning-skills {
+  flex: 1 0 50%;
+}
+
+#skills-section-content > div > ul {
+  flex: 1 0 50%;
+  padding: 6px 0 0 36px;
+  margin: 12px;
+}
+
+#programming-languages-and-tools ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0;
+  padding-left: 18px;
+}
+
+#programming-languages-and-tools li {
+  flex: 1 1 auto;
+  list-style: none;
+  margin: 6px;
+}
+
+#programming-languages-and-tools > ul > li {
+  max-width: 30%;
+  padding: 6px;
+  margin: 12px;
+  background-color: gray;
+  border-radius: 6px;
+  text-align: center;
+}
+
+#programming-languages-and-tools > ul > li > ul {
+  padding: 0;
+  font-size: 0.8em;
+}
+
+#projects-list {
+  height: 80%;
+  padding: 36px;
+  display: flex;
+}
+
+#projects-list li {
+  height: 100%;
+  max-width: 30vw;
+  padding: 18px;
+  margin: 24px;
+  list-style: none;
+}
+
+#projects-list li a {
+  height: 100%;
+}
+
+#projects-list li a > * {
+  padding: 6px;
+}
+
+#projects-list li a > p {
+  margin: 0;
+  font-size: 1em;
+}
