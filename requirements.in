@@ -1,5 +1,7 @@
 alembic
 fastapi
 jinja2
+pydantic
+pydantic[email]
 SQLAlchemy
 uvicorn
