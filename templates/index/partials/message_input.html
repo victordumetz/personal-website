@@ -1,0 +1,19 @@
+<label for="message">Message:</label>
+<textarea
+  name="message"
+  {%
+  if
+  errors.message
+  !=""
+  %}
+  class="invalid"
+  aria-invalid="true"
+  aria-describedby="message-error-message"
+  {%
+  endif
+  %}
+  hx-post="/contact-form/message"
+  hx-target="closest div"
+  hx-target-422="closest div"
+>{{ values.message }}</textarea>
+<span id="message-error-message" class="error-message">{{ errors.message }}</div>

@@ -1,0 +1,21 @@
+<label for="email">Email address:</label>
+<input
+  type="text"
+  name="email"
+  {%
+  if
+  errors.email
+  !=""
+  %}
+  class="invalid"
+  aria-invalid="true"
+  aria-describedby="email-error-message"
+  {%
+  endif
+  %}
+  value="{{ values.email }}"
+  hx-post="/contact-form/email"
+  hx-target="closest div"
+  hx-target-422="closest div"
+/>
+<span id="email-error-message" class="error-message">{{ errors.email }}</div>
