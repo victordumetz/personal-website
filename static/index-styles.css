@@ -272,3 +272,79 @@ section p {
   margin: 0;
   font-size: 1em;
 }
+
+#contact .section-content {
+  width: 100%;
+  padding: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#contact .socials {
+  padding: 12px;
+}
+
+#contact .socials li {
+  padding: 6px;
+  margin: 12px;
+  list-style: none;
+}
+
+#contact-form {
+  flex: 0 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-container {
+  width: 100%;
+  min-width: 30vw;
+  max-width: 500px;
+}
+
+.error-message {
+  color: #cc0000;
+}
+
+input,
+textarea {
+  width: 100%;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: none;
+  height: 5rem;
+}
+
+.invalid {
+  box-shadow: 0 0 3px #cc0000;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 12px;
+  text-align: center;
+}
+
+.auto-close {
+  visibility: hidden;
+  animation: fade-out 4s;
+}
+
+@keyframes fade-out {
+  0%,
+  75% {
+    visibility: visible;
+    opacity: 1;
+  }
+  100% {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
