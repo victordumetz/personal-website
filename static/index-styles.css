@@ -321,3 +321,30 @@ textarea {
 .invalid {
   box-shadow: 0 0 3px #cc0000;
 }
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 12px;
+  text-align: center;
+}
+
+.auto-close {
+  visibility: hidden;
+  animation: fade-out 4s;
+}
+
+@keyframes fade-out {
+  0%,
+  75% {
+    visibility: visible;
+    opacity: 1;
+  }
+  100% {
+    visibility: hidden;
+    opacity: 0;
+  }
+}

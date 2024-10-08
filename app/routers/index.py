@@ -145,7 +145,8 @@ async def get_contact_form(
                 "message": urlencode(
                     {"message": values["message"], "error": errors["message"]}
                 ),
-            }
+            },
+            "success": False,
         },
     )
 
@@ -336,7 +337,8 @@ async def post_contact_form(
                             "error": error_messages["message"],
                         }
                     ),
-                }
+                },
+                "success": False,
             },
         )
 
@@ -351,6 +353,7 @@ async def post_contact_form(
                 "name": urlencode({"name": "", "error": ""}),
                 "email": urlencode({"email": "", "error": ""}),
                 "message": urlencode({"message": "", "error": ""}),
-            }
+            },
+            "success": True,
         },
     )
