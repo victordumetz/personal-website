@@ -1,0 +1,31 @@
+<form
+  id="contact-form"
+  hx-post="/contact-form"
+  hx-swap="outerHTML"
+  hx-target-422="this"
+>
+  <div
+    class="input-container"
+    hx-get="/contact-form/name?{{ query_parameters.name }}"
+    hx-trigger="load"
+    hx-swap="innerHTML"
+  ></div>
+  <div
+    class="input-container"
+    hx-get="/contact-form/email?{{ query_parameters.email }}"
+    hx-trigger="load"
+    hx-swap="innerHTML"
+  ></div>
+  <div
+    class="input-container"
+    hx-get="/contact-form/message?{{ query_parameters.message }}"
+    hx-trigger="load"
+    hx-swap="innerHTML"
+  ></div>
+  <button type="submit">Send</button>
+</form>
+{% if success %}
+<div class="popup auto-close">
+  Thank you for contacting me!<br />I will get back to you as soon as possible.
+</div>
+{% endif %}

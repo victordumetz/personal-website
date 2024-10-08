@@ -1,0 +1,21 @@
+<label for="name">Name:</label>
+<input
+  type="text"
+  name="name"
+  {%
+  if
+  errors.name
+  !=""
+  %}
+  class="invalid"
+  aria-invalid="true"
+  aria-describedby="name-error-message"
+  {%
+  endif
+  %}
+  value="{{ values.name }}"
+  hx-post="/contact-form/name"
+  hx-target="closest div"
+  hx-target-422="closest div"
+/>
+<span id="name-error-message" class="error-message">{{ errors.name }}</div>
