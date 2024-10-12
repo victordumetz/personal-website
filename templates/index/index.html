@@ -24,13 +24,35 @@
 
     <title>Victor Dumetz</title>
   </head>
-  <body>
-    <header>
-      <a href="#"><h1 id="name">Victor Dumetz</h1></a>
+  <body class="font-body">
+    <header class="glass font-display">
+      <a href="#"><h1 id="name" class="sink-in">Victor Dumetz</h1></a>
       <nav id="navigation-bar">
-        <ul>
+        <script
+          src="{{ url_for('static', path='/js/toggle_navigation_bar.js') }}"
+          defer
+        ></script>
+        <button
+          type="button"
+          id="toggle-navigation-bar"
+          class="sink-in"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <svg viewBox="0 0 24 24" fill="none">
+            <g id="hamburger-icon">
+              <line x1="4" y1="6" x2="20" y2="6" />
+              <line x1="4" y1="12" x2="20" y2="12" />
+              <line x1="4" y1="18" x2="20" y2="18" />
+            </g>
+          </svg>
+        </button>
+        <ul class="navigation-items">
           {% for section in sections %}
-          <li><a href="#{{ section.html_id }}">{{ section.name }}</a></li>
+          <li class="sink-in">
+            <a href="#{{ section.html_id }}">{{ section.name }}</a>
+          </li>
           {% endfor %}
         </ul>
       </nav>
